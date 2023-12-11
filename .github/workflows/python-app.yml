@@ -2,10 +2,10 @@ name: Build
 on:
   pull_request:
     branches:
-      - dev-test
+      - main
   push:
     branches:
-      - dev-test
+      - main
 jobs:
   pr-only:
     if: github.event_name == 'pull_request'
@@ -23,3 +23,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run ruff
         run: ruff .
+      - name: pytest
+        run: pytest
+      - name: pytest-cov
+        run: pytest --cov=myproj tests/
